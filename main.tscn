@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfn50fk5adnol"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1tlwx"]
+[ext_resource type="PackedScene" uid="uid://cjvhjrihl2jus" path="res://player.tscn" id="1_1wgws"]
+[ext_resource type="PackedScene" uid="uid://cwlxg7yxtq4nq" path="res://car.tscn" id="2_rtgpc"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_1tlwx")
+car_scene = ExtResource("2_rtgpc")
+
+[node name="Player" parent="." instance=ExtResource("1_1wgws")]
+position = Vector2(500, 560)
+
+[node name="TrafficTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="TrafficSpawn" type="Marker2D" parent="."]
+position = Vector2(1110, 575)
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Debug" type="Label" parent="."]
+visible = false
+offset_left = 129.0
+offset_top = 64.0
+offset_right = 345.0
+offset_bottom = 164.0
+text = "START"
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="TrafficTimer" to="." method="_on_traffic_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwlxg7yxtq4nq"]
+
+[ext_resource type="Texture2D" uid="uid://dkm578d520uuc" path="res://kenney_pixel-vehicle-pack/PNG/Cars/sedan.png" id="1_5d1s5"]
+[ext_resource type="Script" path="res://car.gd" id="1_k81sj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1g66"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5d1s5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bu8ol"]
+radius = 6.0
+height = 28.0
+
+[node name="Car" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_k81sj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_k1g66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bu8ol")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(57.75, 32.1)
+scale = Vector2(6.775, 4.21)
